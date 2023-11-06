@@ -4,13 +4,17 @@
 #include "../WeatherSensor/WeatherSensor.h"
 #include <vector>
 
-class WeatherStation {
-private:
-    std::vector<WeatherSensor> sensors;
+using namespace WeatherSensorNamespace;
 
-public:
-    void addSensor(const WeatherSensor& sensor);
-    void collectData();
-};
+namespace WeatherStationNamespace {
+    class WeatherStation {
+    private:
+        std::vector<WeatherSensor> sensors;
+
+    public:
+        void addSensor(const WeatherSensor& sensor);
+        void collectData();
+    };
+}
 
 #endif

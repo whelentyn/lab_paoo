@@ -5,9 +5,11 @@
 
 using namespace WeatherDataNamespace;
 
-class WeatherSensor {
+namespace WeatherSensorNamespace {
+    class WeatherSensor {
     public:
         WeatherData readData() const;
-};
+    };
+}
 
 #endif
