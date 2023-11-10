@@ -1,33 +1,30 @@
-#include <iostream>
-#include "WeatherSensor/WeatherSensor.h"
+#include "WeatherSensor/PressureSensor.h"
+#include "WeatherSensor/TemperatureSensor.h"
+#include "WeatherStation.h"
 #include "WeatherData/WeatherData.h"
-#include "WeatherStation/WeatherStation.h"
-#include "WeatherData/WeatherDataWind.h"
-
-using namespace std;
-using namespace WeatherDataNamespace;
 
 int main() {
-    WeatherDataWind windData = *new WeatherDataWind(20.0, 50.0, 1013.2, "Windy day", 30);
+    // Create a WeatherData instance
+    WeatherDataNamespace::WeatherData weatherData(25.0, 60.0, 1013.2, "Sunny day");
 
-    //acces super class methods through an instance of the subclass
-    cout << "Temperature: " << windData.getTemperature() << "°C" << endl;
-    cout << "Humidity: " << windData.getHumidity() << "%" << endl;
-    cout << "Pressure: " << windData.getPressure() << "hPa" << endl;
-    cout << "Description: " << windData.getDescription() << endl;
+    // Create instances of sensors
+    WeatherSensorNamespace::PressureSensor pressureSensor;
+    WeatherSensorNamespace::TemperatureSensor temperatureSensor;
 
-    cout << "Wind Speed: " << windData.getWindSpeed() << " mph" << endl;
+    // Create instances of the WeatherStation for each type of sensor
+    WeatherStationNamespace::WeatherStation<WeatherSensorNamespace::PressureSensor> pressureStation;
+    WeatherStationNamespace::WeatherStation<WeatherSensorNamespace::TemperatureSensor> temperatureStation;
 
-    //create a weather instance 
-    WeatherData weather1(25.0, 60.0, 1010.0, "Sunny day");
+    // Add sensors to their respective stations
+    pressureStation.addSensor(pressureSensor);
+    temperatureStation.addSensor(temperatureSensor);
 
-    //use the move constructor to create a second instance
-    WeatherData weather2(move(weather1));
+    // Collect and display data from each station
+    std::cout << "Pressure Station Data:" << std::endl;
+    pressureStation.collectData();
 
-    cout << "Weather2 - Temperature: " << weather1.getTemperature() << "°C" << std::endl;
-    cout << "Weather2 - Humidity: " << weather1.getHumidity() << "%" << std::endl;
-    cout << "Weather2 - Pressure: " << weather1.getPressure()<< "hPa" << std::endl;
-    cout << "Weather2 - Description: " << weather1.getDescription() << std::endl;
+    std::cout << "\nTemperature Station Data:" << std::endl;
+    temperatureStation.collectData();
 
     return 0;
 }
