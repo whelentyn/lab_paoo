@@ -1,18 +1,19 @@
 #ifndef WEATHERSTATION_H
 #define WEATHERSTATION_H
 
-#include "../WeatherSensor/WeatherSensor.h"
 #include <vector>
 
 namespace WeatherStationNamespace {
+    template <typename T>
     class WeatherStation {
     private:
-        std::vector<WeatherSensor> sensors;
+        std::vector<T> sensors;
 
     public:
-        void addSensor(const WeatherSensor& sensor);
+        void addSensor(const T& sensor);
         void collectData();
     };
 }
 
 #endif
+

@@ -1,5 +1,5 @@
 #define the WeatherStation library
-add_library(WeatherStation WeatherStation.cpp)
+add_library(WeatherStationLibrary WeatherStation.cpp)
 
 #link the WeatherSensor and WeatherData libraries
-target_link_libraries(WeatherStation WeatherSensor WeatherData)
+target_link_libraries(WeatherStationLibrary WeatherSensorLibrary WeatherDataLibrary)
