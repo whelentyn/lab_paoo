@@ -1,5 +1,9 @@
-#define the WeatherSensor library
-add_library(WeatherSensor WeatherSensor.cpp)
+set(HEADERS IWeatherSensor.h PressureSensor.h TemperatureSensor.h)
 
-#link the WeatherData library
-target_link_libraries(WeatherSensor WeatherDataLibrary)
+set(SOURCES PressureSensor.cpp TemperatureSensor.cpp)
+
+add_library(WeatherDataLibrary ${SOURCES} ${HEADERS})
+
+target_include_directories(WeatherSensorLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(WeatherSensorLibrary WeatherDataLibrary)
