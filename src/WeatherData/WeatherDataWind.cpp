@@ -1,7 +1,7 @@
 #include "../WeatherData/WeatherDataWind.h"
 
 namespace WeatherDataNamespace {
-    int WeatherDataWind::getWindSpeed() {
+    int WeatherDataWind::getWindSpeed() const{
         return windSpeed;
     }
 

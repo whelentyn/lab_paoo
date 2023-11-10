@@ -4,10 +4,10 @@
 
 namespace WeatherDataNamespace {
     class IWeatherData {
-        virtual double getTemperature() = 0;
-        virtual double getHumidity() = 0;
-        virtual double getPressure() = 0;
-        virtual const char* getDescription() = 0;
+        virtual double getTemperature() const = 0;
+        virtual double getHumidity() const = 0;
+        virtual double getPressure() const = 0;
+        virtual const char* getDescription() const = 0;
 
         virtual void setTemperature(double newTemperature) = 0;
         virtual void setHumidity(double newHumidity) = 0;

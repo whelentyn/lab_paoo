@@ -4,8 +4,6 @@
 #include "../WeatherSensor/WeatherSensor.h"
 #include <vector>
 
-using namespace WeatherSensorNamespace;
-
 namespace WeatherStationNamespace {
     class WeatherStation {
     private:

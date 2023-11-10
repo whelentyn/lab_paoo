@@ -14,7 +14,7 @@ namespace WeatherDataNamespace {
             WeatherData(temp, hum, press, desc), windSpeed(wind) {
         }
 
-        int getWindSpeed();
+        int getWindSpeed() const;
 
         void setWindSpeed(int newWindSpeed);
     };

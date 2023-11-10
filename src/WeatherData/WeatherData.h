@@ -48,10 +48,10 @@ namespace WeatherDataNamespace {
         }
 
 
-        double getTemperature() override;
-        double getHumidity() override;
-        double getPressure() override;
-        const char* getDescription() override;
+        double getTemperature() const override;
+        double getHumidity() const override;
+        double getPressure() const override;
+        const char* getDescription() const override;
 
         void setTemperature(double temp) override; 
         void setHumidity(double hum) override;

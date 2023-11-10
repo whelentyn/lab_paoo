@@ -1,7 +1,10 @@
+// In WeatherStation.cpp
+
 #include "WeatherStation.h"
 #include <iostream>
 
 using namespace WeatherSensorNamespace;
+using namespace WeatherDataNamespace;
 
 namespace WeatherStationNamespace {
     void WeatherStation::addSensor(const WeatherSensor& sensor) {
@@ -15,3 +18,4 @@ namespace WeatherStationNamespace {
         }
     }
 }
+

@@ -3,20 +3,20 @@
 
 
 namespace WeatherDataNamespace {
-    double WeatherData::getTemperature() {
+    double WeatherData::getTemperature() const{
         return temperature;
     }
 
 
-    double WeatherData::getHumidity() {
+    double WeatherData::getHumidity() const{
         return humidity;
     }
 
-    double WeatherData::getPressure() { 
+    double WeatherData::getPressure() const{ 
         return pressure;
     }
 
-    const char* WeatherData::getDescription() {
+    const char* WeatherData::getDescription() const{
         return description;
     }
 
