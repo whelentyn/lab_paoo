@@ -1,14 +1,13 @@
 #ifndef WEATHERSENSOR_H
 #define WEATHERSENSOR_H
 
+#include <list>
 #include "../WeatherData/WeatherData.h"
-
-using namespace WeatherDataNamespace;
 
 namespace WeatherSensorNamespace {
     class WeatherSensor {
     public:
-        WeatherData readData() const;
+        std::list<WeatherData> readData(const std::list<WeatherData>& existingData) const;
     };
 }
 
