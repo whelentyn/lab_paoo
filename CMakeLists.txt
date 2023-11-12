@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(project_paoo_vb VERSION 0.1.0 LANGUAGES C CXX)
+project(proiect_paoo VERSION 0.1.0 LANGUAGES C CXX)
 
 include(CTest)
 enable_testing()
@@ -17,4 +17,11 @@ endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+
+add_subdirectory(src)
+
+add_executable(proiect_paoo src/main.cpp)
+
+target_link_libraries(proiect_paoo MainLibrary WeatherDataLibrary WeatherSensorLibrary WeatherStationLibrary)
+
 include(CPack)

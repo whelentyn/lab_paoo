@@ -1,8 +1,8 @@
-set(HEADERS IWeatherSensor.h PressureSensor.h TemperatureSensor.h)
+set(HEADERS WeatherSensor.h)
 
-set(SOURCES PressureSensor.cpp TemperatureSensor.cpp)
+set(SOURCES WeatherSensor.cpp)
 
-add_library(WeatherDataLibrary ${SOURCES} ${HEADERS})
+add_library(WeatherSensorLibrary ${SOURCES} ${HEADERS})
 
 target_include_directories(WeatherSensorLibrary PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

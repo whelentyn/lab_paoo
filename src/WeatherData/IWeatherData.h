@@ -4,6 +4,8 @@
 
 namespace WeatherDataNamespace {
     class IWeatherData {
+    public:
+        virtual ~IWeatherData() = default;
         virtual double getTemperature() const = 0;
         virtual double getHumidity() const = 0;
         virtual double getPressure() const = 0;
