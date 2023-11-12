@@ -2,6 +2,7 @@
 #include "WeatherStation/WeatherStation.h"
 #include "DataProcessor/DataProcessor.h"
 #include "WeatherData/WeatherData.h"
+#include <memory>
 
 int main() {
     double temperature = 25.0;
@@ -9,24 +10,35 @@ int main() {
     double pressure = 1013.25;
     const char* description = "Sunny day";
 
-    // Instantiate WeatherData with sample values
-    WeatherDataNamespace::WeatherData weatherData(temperature, humidity, pressure, description);
+    //create a unique pointer using std::make_unique
+    std::unique_ptr<WeatherDataNamespace::WeatherData> uniqueWeatherDataPtr = std::make_unique<WeatherDataNamespace::WeatherData>(temperature, humidity, pressure, description);
+
+    //create a shared pointer using std::make_shared
+    std::shared_ptr<WeatherDataNamespace::WeatherData> sharedWeatherDataPtr = std::make_shared<WeatherDataNamespace::WeatherData>(22.5, 55.0, 1012.5, "Partly cloudy");
+
 
     DataProcessorNamespace::DataProcessor<WeatherDataNamespace::WeatherData> processor;
-    processor.processData(weatherData);
 
-    // Create WeatherSensor with WeatherData instance
-    WeatherSensorNamespace::WeatherSensor sensor(weatherData);
+    processor.processData(*uniqueWeatherDataPtr);
+
+
+    WeatherSensorNamespace::WeatherSensor uniqueWeatherSensor(*uniqueWeatherDataPtr);
+
+
+    WeatherSensorNamespace::WeatherSensor sharedWeatherSensor(*sharedWeatherDataPtr);
+
+
     WeatherStationNamespace::WeatherStation station;
 
-    // Create DataProcessor for WeatherData
+    // Add sensors to the station
+    station.addSensor(uniqueWeatherSensor);
+    station.addSensor(sharedWeatherSensor);
 
-    // Add the sensor to the station
-    station.addSensor(sensor);
-
-    // Collect data from the sensor, process it
+    // Collect data from the sensors
     station.collectData();
+
+    //uniqueWeatherDataPtr will be automatically released when it goes out of scope
+    //sharedWeatherDataPtr is shared and will stay valid even after going out of scope
 
     return 0;
 }
-
