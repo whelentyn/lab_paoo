@@ -1,33 +1,32 @@
-#include <iostream>
 #include "WeatherSensor/WeatherSensor.h"
-#include "WeatherData/WeatherData.h"
 #include "WeatherStation/WeatherStation.h"
-#include "WeatherData/WeatherDataWind.h"
-
-using namespace std;
-using namespace WeatherDataNamespace;
+#include "DataProcessor/DataProcessor.h"
+#include "WeatherData/WeatherData.h"
 
 int main() {
-    WeatherDataWind windData = *new WeatherDataWind(20.0, 50.0, 1013.2, "Windy day", 30);
+    double temperature = 25.0;
+    double humidity = 60.0;
+    double pressure = 1013.25;
+    const char* description = "Sunny day";
 
-    //acces super class methods through an instance of the subclass
-    cout << "Temperature: " << windData.getTemperature() << "°C" << endl;
-    cout << "Humidity: " << windData.getHumidity() << "%" << endl;
-    cout << "Pressure: " << windData.getPressure() << "hPa" << endl;
-    cout << "Description: " << windData.getDescription() << endl;
+    // Instantiate WeatherData with sample values
+    WeatherDataNamespace::WeatherData weatherData(temperature, humidity, pressure, description);
 
-    cout << "Wind Speed: " << windData.getWindSpeed() << " mph" << endl;
+    DataProcessorNamespace::DataProcessor<WeatherDataNamespace::WeatherData> processor;
+    processor.processData(weatherData);
 
-    //create a weather instance 
-    WeatherData weather1(25.0, 60.0, 1010.0, "Sunny day");
+    // Create WeatherSensor with WeatherData instance
+    WeatherSensorNamespace::WeatherSensor sensor(weatherData);
+    WeatherStationNamespace::WeatherStation station;
 
-    //use the move constructor to create a second instance
-    WeatherData weather2(move(weather1));
+    // Create DataProcessor for WeatherData
 
-    cout << "Weather2 - Temperature: " << weather1.getTemperature() << "°C" << std::endl;
-    cout << "Weather2 - Humidity: " << weather1.getHumidity() << "%" << std::endl;
-    cout << "Weather2 - Pressure: " << weather1.getPressure()<< "hPa" << std::endl;
-    cout << "Weather2 - Description: " << weather1.getDescription() << std::endl;
+    // Add the sensor to the station
+    station.addSensor(sensor);
+
+    // Collect data from the sensor, process it
+    station.collectData();
 
     return 0;
 }
+

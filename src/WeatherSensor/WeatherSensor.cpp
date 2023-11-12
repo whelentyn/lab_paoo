@@ -1,13 +1,11 @@
 #include "WeatherSensor.h"
-
-using namespace WeatherDataNamespace;
+#include <iostream>
+#include "../WeatherData/WeatherData.h"
 
 namespace WeatherSensorNamespace {
-    WeatherData WeatherSensor::readData() const {
-    // Simulate some data that is ready
-    double temp = 25.5;
-    double hum = 60.0;
-    double press = 1013.2;
-    return WeatherData(temp, hum, press, "Sunny day");
-}
+    WeatherSensor::WeatherSensor(WeatherDataNamespace::WeatherData& data) : data(data) {}
+
+    WeatherDataNamespace::WeatherData WeatherSensor::readData() const{
+        return WeatherDataNamespace::WeatherData(data.getTemperature(), data.getPressure(), data.getHumidity(), data.getDescription());
+    }
 }
