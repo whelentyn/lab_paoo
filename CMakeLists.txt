@@ -22,6 +22,6 @@ add_subdirectory(src)
 
 add_executable(proiect_paoo src/main.cpp)
 
-target_link_libraries(proiect_paoo MainLibrary WeatherDataLibrary WeatherSensorLibrary WeatherStationLibrary)
+target_link_libraries(proiect_paoo MainLibrary)
 
 include(CPack)
